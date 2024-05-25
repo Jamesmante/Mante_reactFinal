@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
@@ -32,12 +32,12 @@ function App() {
     }
 
     return (
-        <div>
+        <div className="app-container">
             {people.map((person, index) => (
                 <div key={index} className="card">
                     <h1>Teacher</h1>
                     {editable === index ? (
-                        <form onSubmit={(e) => handleSubmit(index, e)}>
+                        <form onSubmit={(e) => handleSubmit(index, e)} className="edit-form">
                             <div className="input-group">
                                 <label htmlFor={`name-${index}`}>Name</label>
                                 <input type="text" id={`name-${index}`} value={person.name} onChange={(e) => handleChange(index, 'name', e)} />
@@ -50,10 +50,10 @@ function App() {
                                 <label htmlFor={`netWorth-${index}`}>Net Worth</label>
                                 <input type="text" id={`netWorth-${index}`} value={person.netWorth} onChange={(e) => handleChange(index, 'netWorth', e)} />
                             </div>
-                            <button type="submit">Save</button>
+                            <button type="submit" className="btn save-btn">Save</button>
                         </form>
                     ) : (
-                        <table>
+                        <table className="info-table">
                             <tbody>
                                 <tr>
                                     <th>Name</th>
@@ -70,7 +70,7 @@ function App() {
                             </tbody>
                         </table>
                     )}
-                    <button onClick={() => handleClick(index)}>Edit</button>
+                    <button className="btn edit-btn" onClick={() => handleClick(index)}>Edit</button>
                 </div>
             ))}
         </div>
